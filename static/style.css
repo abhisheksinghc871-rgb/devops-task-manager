@@ -1,0 +1,132 @@
+:root {
+  --bg: #e9edf0;
+  --surface: #ffffff;
+  --ink: #17212b;
+  --muted: #566472;
+  --line: #d3dbe2;
+  --accent: #0b6e6e;
+  --accent-ink: #ffffff;
+  --pending: #a8650b;
+  --done: #1b7a46;
+  --danger: #b42318;
+  --radius: 6px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.page { max-width: 760px; margin: 0 auto; padding: 2rem 1rem 3rem; }
+
+.masthead h1 { margin: 0 0 .25rem; font-size: 2rem; letter-spacing: -.02em; }
+.lede { margin: 0 0 1.5rem; color: var(--muted); max-width: 60ch; }
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0 1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem .9rem;
+  margin-bottom: 1rem;
+}
+.stat { display: flex; flex-direction: column; }
+.num { font-size: 2.25rem; font-weight: 700; line-height: 1.1; }
+.num-pending { color: var(--pending); }
+.num-done { color: var(--done); }
+.lbl { color: var(--muted); font-size: .9rem; }
+.meter { grid-column: 1 / -1; height: 6px; background: var(--line); border-radius: 3px; margin-top: .9rem; overflow: hidden; }
+.meter-fill { display: block; height: 100%; background: var(--done); }
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+.panel h2 { margin: 0 0 .75rem; font-size: 1.15rem; }
+
+.add-form label { display: block; font-weight: 600; margin: .75rem 0 .25rem; }
+.add-form label:first-of-type { margin-top: 0; }
+.optional { font-weight: 400; color: var(--muted); }
+input[type="text"], textarea {
+  width: 100%;
+  padding: .6rem .7rem;
+  border: 1px solid #aab6c1;
+  border-radius: var(--radius);
+  font: inherit;
+  color: inherit;
+  background: #fff;
+}
+textarea { resize: vertical; }
+.add-form .btn { margin-top: 1rem; }
+
+.alert {
+  margin: 0 0 1rem;
+  padding: .6rem .8rem;
+  border-left: 4px solid var(--danger);
+  background: #fdecea;
+  color: #7a1810;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.btn {
+  display: inline-block;
+  padding: .5rem .9rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-primary:hover { background: #095858; }
+.btn-quiet { background: #fff; color: var(--accent); border-color: var(--accent); }
+.btn-quiet:hover { background: #e6f3f3; }
+.btn-danger { background: #fff; color: var(--danger); border-color: #e3b3ae; }
+.btn-danger:hover { background: #fdecea; }
+
+:focus-visible { outline: 3px solid #1d8fe0; outline-offset: 2px; }
+
+.tasks { list-style: none; margin: 0; padding: 0; }
+.task {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .9rem 0 .9rem .9rem;
+  border-top: 1px solid var(--line);
+  border-left: 4px solid var(--pending);
+}
+.task:first-child { border-top: 0; }
+.task.is-done { border-left-color: var(--done); }
+.task-title { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+.is-done .task-title { color: var(--muted); text-decoration: line-through; }
+.task-desc { margin: .15rem 0 0; color: var(--muted); overflow-wrap: anywhere; white-space: pre-line; }
+.task-meta { margin: .4rem 0 0; font-size: .85rem; color: var(--muted); }
+.badge { font-weight: 700; margin-right: .4rem; color: var(--pending); }
+.is-done .badge { color: var(--done); }
+.task-actions { display: flex; flex-direction: column; gap: .4rem; align-items: stretch; flex-shrink: 0; }
+.task-actions form { margin: 0; }
+.task-actions .btn { width: 100%; font-size: .9rem; }
+
+.empty { margin: 0; color: var(--muted); }
+.foot { text-align: center; color: var(--muted); font-size: .9rem; }
+.foot a { color: var(--accent); }
+.error-panel h1 { margin-top: 0; }
+
+@media (max-width: 560px) {
+  .page { padding-top: 1.25rem; }
+  .masthead h1 { font-size: 1.6rem; }
+  .task { flex-direction: column; }
+  .task-actions { flex-direction: row; }
+  .task-actions form { flex: 1; }
+}
